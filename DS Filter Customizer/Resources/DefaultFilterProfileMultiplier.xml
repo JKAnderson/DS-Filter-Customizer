@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <version>0</version>
+  <name>Default Multiplier</name>
+  <type>1</type>
+  <filters>
+    <filter world="-1" id="-1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+  </filters>
+</root>

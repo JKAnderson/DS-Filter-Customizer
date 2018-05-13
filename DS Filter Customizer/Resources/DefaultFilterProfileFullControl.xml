@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <version>0</version>
+  <name>Default Full Control</name>
+  <type>3</type>
+  <filters>
+    <!-- 屋外(コントラスト高め)
+    <filter world="10" id="0">
+      <brightness sync="false">1.03,1.03,1.03</brightness>
+      <contrast sync="false">1.25,1.15,1.1</contrast>
+      <saturation>0.8999999</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0屋内 -->
+    <filter world="10" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.1,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- Ｂ0地下 -->
+    <filter world="10" id="2">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.1,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0地下水路 -->
+    <filter world="10" id="3">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.07,1.06</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0貯水池 -->
+    <filter world="10" id="4">
+      <brightness sync="false">1,1.05,1.1</brightness>
+      <contrast sync="false">1.34,1.2,1.15</contrast>
+      <saturation>0.87</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1基本 -->
+    <filter world="10" id="10">
+      <brightness sync="false">1.06,1.06,1.06</brightness>
+      <contrast sync="false">1.15,1.13,1.14</contrast>
+      <saturation>0.83</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1屋内 -->
+    <filter world="10" id="11">
+      <brightness sync="false">1.05,1.05,1.05</brightness>
+      <contrast sync="false">1.15,1.14,1.15</contrast>
+      <saturation>0.9000001</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B2拠点 -->
+    <filter world="10" id="20">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.15,1.15</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B2墓地入り口 -->
+    <filter world="10" id="23">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.2,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B2深淵入り口 -->
+    <filter world="10" id="24">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.23,1.15,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 基本 -->
+    <filter world="11" id="0">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.23,1.15,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- ボス部屋（コントラスト高め） -->
+    <filter world="11" id="1">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.28,1.2,1.13</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- ボス部屋屋上（コントラスト最大） -->
+    <filter world="11" id="2">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.33,1.25,1.18</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0基本 -->
+    <filter world="12" id="0">
+      <brightness sync="false">1,1,1.02</brightness>
+      <contrast sync="false">1.15,1.01,1</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="12" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1,1</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="12" id="2">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1,1</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="12" id="3">
+      <brightness sync="false">1.1,1.1,1.04</brightness>
+      <contrast sync="false">1.23,1.33,1.28</contrast>
+      <saturation>0.88</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="12" id="4">
+      <brightness sync="false">1.1,1.1,1.04</brightness>
+      <contrast sync="false">1.23,1.33,1.28</contrast>
+      <saturation>0.88</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="12" id="5">
+      <brightness sync="false">1.1,1.1,1.04</brightness>
+      <contrast sync="false">1.23,1.33,1.28</contrast>
+      <saturation>0.88</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="12" id="6">
+      <brightness sync="false">1.1,1.1,1.04</brightness>
+      <contrast sync="false">1.23,1.33,1.28</contrast>
+      <saturation>0.88</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="12" id="7">
+      <brightness sync="false">1.09,1.06,1.1</brightness>
+      <contrast sync="false">1.3,1.3,1.3</contrast>
+      <saturation>0.88</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 霊廟 -->
+    <filter world="12" id="11">
+      <brightness sync="false">0.88,1,1</brightness>
+      <contrast sync="false">1.12,1,0.9499999</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 霊廟室内 -->
+    <filter world="12" id="12">
+      <brightness sync="false">1,1,1.02</brightness>
+      <contrast sync="false">1.15,1.01,1</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1ボスエリア -->
+    <filter world="12" id="17">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.2,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1森前半 -->
+    <filter world="12" id="20">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.18,1.02,0.97</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1闘技場 -->
+    <filter world="12" id="23">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.05,1.02</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- Ｂ1対戦マップ -->
+    <filter world="12" id="26">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.12,1.03,0.99</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 屋内(コントラスト高め) -->
+    <filter world="13" id="0">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.3,1.1,1.1</contrast>
+      <saturation>0.95</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="13" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.1,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="13" id="2">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.07,1.05,1.03</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0 -->
+    <filter world="13" id="3">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.1,1.1</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0 -->
+    <filter world="13" id="5">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.15,1.1</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 屋外
+    <filter world="13" id="10">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 屋外地底
+    <filter world="13" id="12">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.15,1.15</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B1屋外 -->
+    <filter world="13" id="13">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>0.8</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1暗部 -->
+    <filter world="13" id="14">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="13" id="16">
+      <brightness sync="false">1.3,1.3,1.33</brightness>
+      <contrast sync="false">1.02,1.02,1.02</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B2下層 -->
+    <filter world="13" id="18">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B2座禅 -->
+    <filter world="13" id="19">
+      <brightness sync="false">1,1.1,1.1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1鍾乳洞 -->
+    <filter world="13" id="27">
+      <brightness sync="false">0.8999999,1,1</brightness>
+      <contrast sync="false">1.25,1.2,1.2</contrast>
+      <saturation>0.9000001</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1ボス -->
+    <filter world="13" id="28">
+      <brightness sync="false">0.8,0.7999998,0.8</brightness>
+      <contrast sync="false">1.3,1.3,1.3</contrast>
+      <saturation>1.15</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="13" id="30">
+      <brightness sync="false">1,1,1.02</brightness>
+      <contrast sync="false">1.04,1.04,1</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 沼切り替え１ -->
+    <filter world="13" id="32">
+      <brightness sync="false">0.9,0.9,0.9</brightness>
+      <contrast sync="false">1.2,1.15,1.22</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 沼切り替え2 -->
+    <filter world="13" id="33">
+      <brightness sync="false">0.95,0.95,0.95</brightness>
+      <contrast sync="false">1.1,1.075,1.11</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="13" id="38">
+      <brightness sync="false">1,1.1,1.1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 切り替え１ -->
+    <filter world="13" id="39">
+      <brightness sync="false">1,1.06,1.06</brightness>
+      <contrast sync="false">1.13,1.13,1.13</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 切り替え２ -->
+    <filter world="13" id="40">
+      <brightness sync="false">1,1.03,1.06</brightness>
+      <contrast sync="false">1.16,1.16,1.16</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="13" id="41">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="14" id="0">
+      <brightness sync="false">0.98,0.98,0.98</brightness>
+      <contrast sync="false">1.35,1.25,1.37</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0沼 -->
+    <filter world="14" id="1">
+      <brightness sync="false">0.7900001,0.8800001,0.9700001</brightness>
+      <contrast sync="false">1.3,1.3,1.42</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0影街 -->
+    <filter world="14" id="2">
+      <brightness sync="false">0.9300001,0.9300001,0.9300001</brightness>
+      <contrast sync="false">1.35,1.25,1.25</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0地下水路 -->
+    <filter world="14" id="3">
+      <brightness sync="false">0.9100001,0.9100001,0.9100001</brightness>
+      <contrast sync="false">1.38,1.28,1.39</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="14" id="4">
+      <brightness sync="false">1.05,1.05,1.05</brightness>
+      <contrast sync="false">1.15,1.16,1.17</contrast>
+      <saturation>1.05</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0クラーグ -->
+    <filter world="14" id="5">
+      <brightness sync="false">0.95,0.95,0.95</brightness>
+      <contrast sync="false">1.25,1.26,1.17</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1爛れ上部 -->
+    <filter world="14" id="6">
+      <brightness sync="false">0.9000001,0.8000001,0.8000001</brightness>
+      <contrast sync="false">1.2,1.3,1.3</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1廃都 -->
+    <filter world="14" id="7">
+      <brightness sync="false">1.25,0.95,0.95</brightness>
+      <contrast sync="false">1.35,1.26,1.36</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1廃都内部 -->
+    <filter world="14" id="8">
+      <brightness sync="false">0.85,0.85,0.85</brightness>
+      <contrast sync="false">1.25,1.26,1.17</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="14" id="10">
+      <brightness sync="false">1.2,1.2,1.2</brightness>
+      <contrast sync="false">1.03,1.03,1.03</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- イザリス -->
+    <filter world="14" id="12">
+      <brightness sync="false">0.95,0.95,0.85</brightness>
+      <contrast sync="false">1.16,1.07,1.07</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="14" id="14">
+      <brightness sync="false">1.15,1.15,1.15</brightness>
+      <contrast sync="false">1.03,1.03,1.03</contrast>
+      <saturation>1.02</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B1下層遺跡 -->
+    <filter world="14" id="15">
+      <brightness sync="false">0.8999997,0.8,0.8</brightness>
+      <contrast sync="false">1.42,1.37,1.28</contrast>
+      <saturation>0.95</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1爛れ下 部
+    <filter world="14" id="16">
+      <brightness sync="false">0.8499998,0.85,0.85</brightness>
+      <contrast sync="false">1.25,1.26,1.17</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="14" id="30">
+      <brightness sync="false">1,1,1.02</brightness>
+      <contrast sync="false">1.04,1.04,1</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0基本 -->
+    <filter world="15" id="0">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.05,1.02</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0屋内 -->
+    <filter world="15" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.07,1.05</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1基本 -->
+    <filter world="15" id="10">
+      <brightness sync="false">1.2,1.2,1.2</brightness>
+      <contrast sync="false">1.08,1.15,1.13</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1屋内 -->
+    <filter world="15" id="11">
+      <brightness sync="false">1.2,1.2,1.2</brightness>
+      <contrast sync="false">1.1,1.15,1.12</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1王母の間 -->
+    <filter world="15" id="12">
+      <brightness sync="false">1.3,1.3,1.3</brightness>
+      <contrast sync="false">1.1,1.25,1.15</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 屋外(コントラスト高め) -->
+    <filter world="16" id="0">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.23,1.15,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 屋内（コントラスト低め） -->
+    <filter world="16" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.18,1.12,1.08</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="16" id="2">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.07,1.05,1.03</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0屋外 -->
+    <filter world="17" id="0">
+      <brightness sync="false">1.03,1.03,1.03</brightness>
+      <contrast sync="false">0.9999999,1,0.9999998</contrast>
+      <saturation>0.7</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0屋内 -->
+    <filter world="17" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.27,1.23,1.22</contrast>
+      <saturation>0.9999999</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0牢 -->
+    <filter world="17" id="2">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.24,1.25,1.2</contrast>
+      <saturation>0.9999999</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0洞窟 -->
+    <filter world="17" id="3">
+      <brightness sync="false">1.03,1.03,1.03</brightness>
+      <contrast sync="false">1.25,1.15,1.1</contrast>
+      <saturation>0.8999999</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- Ｂ0シースの部屋
+    <filter world="17" id="4">
+      <brightness sync="false">1,1.05,1.1</brightness>
+      <contrast sync="false">1.32,1.25,1.24</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0古書室
+    <filter world="17" id="6">
+      <brightness sync="false">1.03,1.03,1.03</brightness>
+      <contrast sync="false">0.9999999,1,0.9999998</contrast>
+      <saturation>0.7799999</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0森 -->
+    <filter world="17" id="7">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">0.9999999,1.05,1.1</contrast>
+      <saturation>0.8999999</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0屋内（図書館後半） -->
+    <filter world="17" id="8">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.27,1.23,1.22</contrast>
+      <saturation>0.9999999</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 0
+    <filter world="17" id="10">
+      <brightness sync="false">1.1,1.1,1.1</brightness>
+      <contrast sync="false">1.08,1.08,1.12</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 0
+    <filter world="17" id="20">
+      <brightness sync="false">1.1,1.2,1.25</brightness>
+      <contrast sync="false">1.35,1.25,1.2</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- 屋外 -->
+    <filter world="18" id="0">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 螺旋階段
+    <filter world="18" id="1">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- ボス部屋 -->
+    <filter world="18" id="2">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0封印の間 -->
+    <filter world="18" id="10">
+      <brightness sync="false">1.3,1.3,1.3</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0白い通路 -->
+    <filter world="18" id="11">
+      <brightness sync="false">1.1,1.1,1.1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B0拠点とのつなぎ１
+    <filter world="18" id="12">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0拠点とのつなぎ２
+    <filter world="18" id="13">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B0拠点とのつなぎ３
+    <filter world="18" id="14">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- m8300B0_王の封印_拠点
+    <filter world="18" id="16">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.15,1.15,1.15</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- m8000B0_王の封印_廃都
+    <filter world="18" id="17">
+      <brightness sync="false">0.9000001,0.8000001,0.8000001</brightness>
+      <contrast sync="false">1.2,1.3,1.3</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- m8100B0_王の封印_結晶
+    <filter world="18" id="18">
+      <brightness sync="false">1.2,1.2,1.2</brightness>
+      <contrast sync="false">1.08,1.15,1.13</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- m8200B0_王の封印_ニト
+    <filter world="18" id="19">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>0.8</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B1室内 -->
+    <filter world="18" id="20">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1室外
+    <filter world="18" id="21">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- B1下水 -->
+    <filter world="18" id="22">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1教会 -->
+    <filter world="18" id="23">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- B1つなぎ
+    <filter world="18" id="24">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter> -->
+
+    <!-- カラス降り場 -->
+    <filter world="18" id="25">
+      <brightness sync="false">1,1,1</brightness>
+      <contrast sync="false">1.2,1.2,1.2</contrast>
+      <saturation>0.8</saturation>
+      <hue>0</hue>
+    </filter>
+
+    <!-- 天井の抜けた通路 -->
+    <filter world="18" id="26">
+      <brightness sync="false">1.2,1.2,1.2</brightness>
+      <contrast sync="false">1,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+  </filters>
+</root>

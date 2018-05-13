@@ -1,0 +1,40 @@
+10,2  Depths
+10,10 Undead Burg/Parish - Exterior
+10,11 Undead Burg/Parish - Interior
+10,20 Firelink Shrine
+
+11,0  Painted World
+
+12,0  Darkroot Garden/Basin
+12,11 Oolacile Sanctuary
+12,17 Chasm of the Abyss
+12,20 Oolacile Township/Royal Wood
+
+13,0  Catacombs
+13,5  Great Hollow
+13,13 Tomb of the Giants - Exterior
+13,14 Tomb of the Giants - Interior
+13,18 Ash Lake
+
+14,2  Blighttown
+14,5  Quelaag's Domain
+14,6  Demon Ruins
+14,7  Lost Izalith - Lava
+14,15 Lost Izalith - General
+
+15,0  Sen's Fortress - Exterior
+15,1  Sen's Fortress - Interior
+15,10 Anor Londo - Exterior
+15,11 Anor Londo - Interior
+
+16,0  Valley of Drakes
+16,1  New Londo Ruins
+
+17,1  The Duke's Archives - Interior
+17,3  Crystal Cave
+17,7  The Duke's Archives - Exterior
+
+18,0  Kiln of the First Flame
+18,10 Firelink Altar
+18,20 Undead Asylum - Interior
+18,25 Undead Asylum - Exterior

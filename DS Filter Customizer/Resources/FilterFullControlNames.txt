@@ -1,0 +1,71 @@
+10,1  The Depths - Entrance
+10,2  The Depths - General
+10,3  The Depths - Sewers
+10,4  The Depths - Gaping Dragon
+10,10 Undead Burg/Parish - Exterior
+10,11 Undead Burg/Parish - Interior
+10,20 Firelink Shrine - General
+10,23 Firelink Shrine - To Catacombs
+10,24 Firelink Shrine - To New Londo
+
+11,0  Painted World - General
+11,1  Painted World - Priscilla
+11,2  Painted World - Exit
+
+12,0  Darkroot Garden/Basin
+12,11 Oolacile Sanctuary - Exterior
+12,12 Oolacile Sanctuary - Interior
+12,17 Chasm of the Abyss
+12,20 Royal Wood/Oolacile Township
+12,23 Oolacile Township - Artorias
+12,26 Oolacile Township - Battle of Stoicism
+
+13,0  Catacombs - General
+13,3  Catacombs - Pinwheel
+13,5  Great Hollow - General
+13,13 Tomb of the Giants - Exterior
+13,14 Tomb of the Giants - Interior
+13,18 Ash Lake - Exterior
+13,19 Ash Lake - Stone Dragon
+13,27 Tomb of the Giants - Before Nito
+13,28 Tomb of the Giants - Nito
+13,32 Great Hollow - To Blighttown, Blighttown Side
+13,33 Great Hollow - To Blighttown, Great Hollow Side
+13,39 Ash Lake - To Stone Dragon, Stone Dragon Side
+13,40 Ash Lake - To Stone Dragon, Ash Lake Side
+
+14,1  Blighttown - Swamp
+14,2  Blighttown - General
+14,3  Blighttown - Interiors
+14,5  Quelaag's Domain
+14,6  Demon Ruins - Exterior
+14,7  Lost Izalith - Lava
+14,8  Demon Ruins - Interior
+14,12 Lost Izalith - Bed of Chaos
+14,15 Lost Izalith - General
+
+15,0  Sen's Fortress - Exterior
+15,1  Sen's Fortress - Interior
+15,10 Anor Londo - Exterior
+15,11 Anor Londo - Interior
+15,12 Anor Londo - Gwynevere
+
+16,0  Valley of Drakes
+16,1  New Londo Ruins
+
+17,0  The Duke's Archives - Balconies
+17,1  The Duke's Archives - General 1
+17,2  The Duke's Archives - Prison
+17,3  Crystal Cave
+17,7  The Duke's Archives - Courtyard
+17,8  The Duke's Archives - General 2
+
+18,0  Kiln of the First Flame - General
+18,2  Kiln of the First Flame - Gwyn
+18,10 Firelink Altar - General
+18,11 Firelink Altar - To Kiln
+18,20 Undead Asylum - Interior
+18,22 Undead Asylum - Stray Demon
+18,23 Undead Asylum - Church
+18,25 Undead Asylum - Exterior
+18,26 Undead Asylum - Hallway After Asylum Demon
