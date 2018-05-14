@@ -12,19 +12,12 @@ namespace DS_Filter_Customizer
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
-        private const uint VERSION_RELEASE = 0xFC293654;
-        private const uint VERSION_DEBUG = 0xCE9634B4;
-        private const uint VERSION_BETA = 0xE91B11E2;
-
         public static DSProcess GetProcess()
         {
             DSProcess result = null;
             Process[] candidates = Process.GetProcessesByName("DARKSOULS");
-            foreach (Process candidate in candidates)
-            {
-                if (result == null)
-                    result = new DSProcess(candidate);
-            }
+            if (candidates.Length > 0)
+                result = new DSProcess(candidates[0]);
             return result;
         }
 
@@ -33,35 +26,27 @@ namespace DS_Filter_Customizer
         private readonly DSInterface dsInterface;
         private readonly DSOffsets offsets;
 
-        public readonly int ID;
-        public readonly string Version;
-        public readonly bool Valid;
+        public int ID { get; private set; }
+        public string Version { get; private set; }
+        public bool Valid { get; private set; }
 
         public DSProcess(Process candidate)
         {
             process = candidate;
             ID = process.Id;
+            Version = "Unknown";
+            Valid = false;
+
             dsInterface = DSInterface.Attach(process);
-            switch (dsInterface?.ReadUInt32(DSOffsets.CheckVersion))
+            if (dsInterface != null)
             {
-                case VERSION_RELEASE:
-                    Version = "Steam";
-                    offsets = DSOffsets.Release;
-                    Valid = true;
-                    break;
-                case VERSION_DEBUG:
-                    Version = "Debug";
-                    offsets = DSOffsets.Debug;
-                    Valid = true;
-                    break;
-                case VERSION_BETA:
-                    Version = "Beta";
-                    Valid = false;
-                    break;
-                default:
-                    Version = "Unknown";
-                    Valid = false;
-                    break;
+                uint versionValue = dsInterface.ReadUInt32(DSOffsets.CheckVersion);
+                if (DSOffsets.Versions.ContainsKey(versionValue))
+                {
+                    Version = DSOffsets.Versions[versionValue].Name;
+                    offsets = DSOffsets.Versions[versionValue].Offsets;
+                    Valid = offsets != null;
+                }
             }
         }
 

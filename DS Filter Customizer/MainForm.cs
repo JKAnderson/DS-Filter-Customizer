@@ -14,6 +14,7 @@ namespace DS_Filter_Customizer
     public partial class MainForm : Form
     {
         private const int FADE_TIME = 2000;
+        private const string UPDATE_LINK = "https://www.nexusmods.com/darksouls/mods/1411?tab=files";
         private static Properties.Settings settings = Properties.Settings.Default;
 
         private DSProcess dsProcess;
@@ -72,7 +73,7 @@ namespace DS_Filter_Customizer
                 {
                     lblCheckVersion.Visible = false;
                     LinkLabel.Link link = new LinkLabel.Link();
-                    link.LinkData = "https://www.nexusmods.com/darksouls/mods/1411";
+                    link.LinkData = UPDATE_LINK;
                     llbNewVersion.Links.Add(link);
                     llbNewVersion.Visible = true;
                 }
