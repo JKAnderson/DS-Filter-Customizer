@@ -51,7 +51,8 @@ namespace DS_Filter_Customizer
                     break;
                 case VERSION_DEBUG:
                     Version = "Debug";
-                    Valid = false;
+                    offsets = DSOffsets.Debug;
+                    Valid = true;
                     break;
                 case VERSION_BETA:
                     Version = "Beta";

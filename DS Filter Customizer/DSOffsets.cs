@@ -37,5 +37,12 @@
         }
 
         public static DSOffsets Release = new DSOffsets();
+        public static DSOffsets Debug = new DSOffsets()
+        {
+            CharData1Ptr = 0x1381E30,
+            GraphicsDataPtr = 0x137C6E0,
+            Unknown1Ptr = 0x13823C4,
+            Unknown5Ptr = 0x137C580,
+        };
     }
 }
