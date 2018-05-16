@@ -1,5 +1,5 @@
 
---| DS Filter Customizer 1.0
+--| DS Filter Customizer 1.1
 --| https://www.nexusmods.com/darksouls/mods/1411
 --| https://github.com/JKAnderson/DS-Filter-Customizer
 
@@ -7,6 +7,14 @@ This utility allows you to customize the built-in visual filters of Dark Souls 1
 Requires .NET 4.7.1, which you probably already have.
 https://www.microsoft.com/net/download/thank-you/net471
 
+Seven sample profiles are included:
+	Cheerful - every area is a bit brighter and more saturated
+	Gloomy - every area is a bit darker and less saturated
+	Negative - inverted colors
+	Night Vision - useful to see what you're doing in areas like Tomb of the Giants
+	Noir - "gritty" black and white, for the hard-boiled detective type
+	TK's Cut - a set of filters for the whole game that I happen to think are nice
+	Vanilla - all default filters, for if you just want the modded fade effect
 
 --| Installation
 
@@ -40,3 +48,11 @@ https://github.com/octokit/octokit.net
 
 Semver by Max Hauser
 https://github.com/maxhauser/semver
+
+
+--| Changelog
+
+1.1
+	Fixed sporadic Multiplier profile crash
+	Fixed changes to Multiplier profiles not applying immediately
+	Fixed Show Active and Force Selected options disabling or not disabling each other when they shouldn't or should've

@@ -143,4 +143,29 @@
     <Error Condition="!Exists('..\packages\Costura.Fody.2.0.1\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.2.0.1\build\Costura.Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Costura.Fody.2.0.1\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.2.0.1\build\Costura.Fody.targets')" />
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="@(Targets->'%(Version)')" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+	<PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
+    <PostBuildEvent>set output=$(TargetDir)$(ProjectName) @(VersionNumber)
+if "$(ConfigurationName)" == "Release" (
+  md "%25output%25"
+  del "%25output%25"
+  md "%25output%25\profiles"
+  copy "$(TargetPath)" "%25output%25\"
+  copy "$(TargetPath).config" "%25output%25\"
+  copy "$(TargetDir)$(TargetName).pdb" "%25output%25\"
+  copy "$(SolutionDir)readme.txt" "%25output%25\"
+  copy "$(SolutionDir)sample profiles\*.xml" "%25output%25\profiles\"
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

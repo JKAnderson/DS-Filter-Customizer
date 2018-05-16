@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <version>0</version>
+  <name>Vanilla</name>
+  <type>3</type>
+  <filters>
+    <filter world="10" id="1">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.1,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="2">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.1,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="3">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.1,1.07,1.06</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="4">
+      <brightness sync="False">1,1.05,1.1</brightness>
+      <contrast sync="False">1.34,1.2,1.15</contrast>
+      <saturation>0.87</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="10">
+      <brightness sync="False">1.06,1.06,1.06</brightness>
+      <contrast sync="False">1.15,1.13,1.14</contrast>
+      <saturation>0.83</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="11">
+      <brightness sync="False">1.05,1.05,1.05</brightness>
+      <contrast sync="False">1.15,1.14,1.15</contrast>
+      <saturation>0.9000001</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="20">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.15,1.15</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="23">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.2,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="10" id="24">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.23,1.15,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="11" id="0">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.23,1.15,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="11" id="1">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.28,1.2,1.13</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="11" id="2">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.33,1.25,1.18</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="0">
+      <brightness sync="False">1,1,1.02</brightness>
+      <contrast sync="False">1.15,1.01,1</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="11">
+      <brightness sync="False">0.88,1,1</brightness>
+      <contrast sync="False">1.12,1,0.9499999</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="12">
+      <brightness sync="False">1,1,1.02</brightness>
+      <contrast sync="False">1.15,1.01,1</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="17">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.2,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="20">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.18,1.02,0.97</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="23">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.05,1.02</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="12" id="26">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.12,1.03,0.99</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="0">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.3,1.1,1.1</contrast>
+      <saturation>0.95</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="3">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.1,1.1</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="5">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.15,1.1</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="13">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>0.8</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="14">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="18">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="19">
+      <brightness sync="False">1,1.1,1.1</brightness>
+      <contrast sync="False">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="27">
+      <brightness sync="False">0.8999999,1,1</brightness>
+      <contrast sync="False">1.25,1.2,1.2</contrast>
+      <saturation>0.9000001</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="28">
+      <brightness sync="False">0.8,0.7999998,0.8</brightness>
+      <contrast sync="False">1.3,1.3,1.3</contrast>
+      <saturation>1.15</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="32">
+      <brightness sync="False">0.9,0.9,0.9</brightness>
+      <contrast sync="False">1.2,1.15,1.22</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="33">
+      <brightness sync="False">0.95,0.95,0.95</brightness>
+      <contrast sync="False">1.1,1.075,1.11</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="39">
+      <brightness sync="False">1,1.06,1.06</brightness>
+      <contrast sync="False">1.13,1.13,1.13</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="13" id="40">
+      <brightness sync="False">1,1.03,1.06</brightness>
+      <contrast sync="False">1.16,1.16,1.16</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="1">
+      <brightness sync="False">0.7900001,0.8800001,0.9700001</brightness>
+      <contrast sync="False">1.3,1.3,1.42</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="2">
+      <brightness sync="False">0.9300001,0.9300001,0.9300001</brightness>
+      <contrast sync="False">1.35,1.25,1.25</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="3">
+      <brightness sync="False">0.9100001,0.9100001,0.9100001</brightness>
+      <contrast sync="False">1.38,1.28,1.39</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="5">
+      <brightness sync="False">0.95,0.95,0.95</brightness>
+      <contrast sync="False">1.25,1.26,1.17</contrast>
+      <saturation>0.9</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="6">
+      <brightness sync="False">0.9000001,0.8000001,0.8000001</brightness>
+      <contrast sync="False">1.2,1.3,1.3</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="7">
+      <brightness sync="False">1.25,0.95,0.95</brightness>
+      <contrast sync="False">1.35,1.26,1.36</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="8">
+      <brightness sync="False">0.85,0.85,0.85</brightness>
+      <contrast sync="False">1.25,1.26,1.17</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="12">
+      <brightness sync="False">0.95,0.95,0.85</brightness>
+      <contrast sync="False">1.16,1.07,1.07</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="14" id="15">
+      <brightness sync="False">0.8999997,0.8,0.8</brightness>
+      <contrast sync="False">1.42,1.37,1.28</contrast>
+      <saturation>0.95</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="15" id="0">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.05,1.02</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="15" id="1">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.15,1.07,1.05</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="15" id="10">
+      <brightness sync="False">1.2,1.2,1.2</brightness>
+      <contrast sync="False">1.08,1.15,1.13</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="15" id="11">
+      <brightness sync="False">1.2,1.2,1.2</brightness>
+      <contrast sync="False">1.1,1.15,1.12</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="15" id="12">
+      <brightness sync="False">1.3,1.3,1.3</brightness>
+      <contrast sync="False">1.1,1.25,1.15</contrast>
+      <saturation>1.2</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="16" id="0">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.23,1.15,1.08</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="16" id="1">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.18,1.12,1.08</contrast>
+      <saturation>1.1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="17" id="0">
+      <brightness sync="False">1.03,1.03,1.03</brightness>
+      <contrast sync="False">0.9999999,1,0.9999998</contrast>
+      <saturation>0.7</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="17" id="1">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.27,1.23,1.22</contrast>
+      <saturation>0.9999999</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="17" id="2">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.24,1.25,1.2</contrast>
+      <saturation>0.9999999</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="17" id="3">
+      <brightness sync="False">1.03,1.03,1.03</brightness>
+      <contrast sync="False">1.25,1.15,1.1</contrast>
+      <saturation>0.8999999</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="17" id="7">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">0.9999999,1.05,1.1</contrast>
+      <saturation>0.8999999</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="17" id="8">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.27,1.23,1.22</contrast>
+      <saturation>0.9999999</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="0">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="2">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="10">
+      <brightness sync="False">1.3,1.3,1.3</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="11">
+      <brightness sync="False">1.1,1.1,1.1</brightness>
+      <contrast sync="False">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="20">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="22">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="23">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.1,1.1,1.1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="25">
+      <brightness sync="False">1,1,1</brightness>
+      <contrast sync="False">1.2,1.2,1.2</contrast>
+      <saturation>0.8</saturation>
+      <hue>0</hue>
+    </filter>
+    <filter world="18" id="26">
+      <brightness sync="False">1.2,1.2,1.2</brightness>
+      <contrast sync="False">1,1,1</contrast>
+      <saturation>1</saturation>
+      <hue>0</hue>
+    </filter>
+  </filters>
+</root>
