@@ -119,6 +119,83 @@ namespace DS_Filter_Customizer
             }
         }
 
+        private void resetFilter()
+        {
+            lastWorld = -1;
+            lastFilter = -1;
+            oldFilter = null;
+            newFilter = null;
+        }
+
+        private void disableFilters()
+        {
+            activeProfile = null;
+            cmbProfile.Enabled = false;
+            btnSave.Enabled = false;
+            btnClone.Enabled = false;
+            btnDelete.Enabled = false;
+            cmbFilter.Enabled = false;
+            gbxFilter.Enabled = false;
+            lblHueNote.Visible = false;
+        }
+
+        private void addFilterProfile(FilterProfile profile)
+        {
+            filterProfiles.Add(profile);
+            reloadCmbProfile();
+            cmbProfile.SelectedItem = profile;
+            if (cmbProfile.Items.Count == 1)
+            {
+                cmbProfile.Enabled = true;
+                btnSave.Enabled = true;
+                btnClone.Enabled = true;
+                btnDelete.Enabled = true;
+                gbxFilter.Enabled = true;
+            }
+            profile.Save();
+        }
+
+        private void reloadCmbProfile()
+        {
+            cmbProfile.Items.Clear();
+            filterProfiles.Sort((a, b) =>
+            {
+                if (a.Type == b.Type)
+                    return a.Name.CompareTo(b.Name);
+                else
+                    return a.Type.CompareTo(b.Type);
+            });
+            foreach (FilterProfile filterProfile in filterProfiles)
+                cmbProfile.Items.Add(filterProfile);
+        }
+
+        private void cmbProfile_SelectedValueChanged(object sender, EventArgs e)
+        {
+            activeProfile = (FilterProfile)cmbProfile.SelectedItem;
+
+            editingFilter = true;
+            cmbFilter.Items.Clear();
+            foreach (Filter filter in activeProfile.Filters)
+                cmbFilter.Items.Add(filter);
+            cmbFilter.SelectedIndex = 0;
+            editingFilter = false;
+
+            if (activeProfile.Type == FilterProfileType.Global || activeProfile.Type == FilterProfileType.Multiplier)
+            {
+                cmbFilter.Enabled = false;
+                cbxShowActive.Enabled = false;
+                cbxForce.Enabled = false;
+            }
+            else
+            {
+                cmbFilter.Enabled = true;
+                cbxShowActive.Enabled = true;
+                cbxForce.Enabled = true;
+            }
+            lblHueNote.Visible = activeProfile.Type == FilterProfileType.Multiplier;
+            resetFilter();
+        }
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             FormNewProfile formNewProfile = new FormNewProfile();
@@ -157,33 +234,6 @@ namespace DS_Filter_Customizer
                 cmbProfile.SelectedIndex = index;
         }
 
-        private void cmbProfile_SelectedValueChanged(object sender, EventArgs e)
-        {
-            activeProfile = (FilterProfile)cmbProfile.SelectedItem;
-
-            editingFilter = true;
-            cmbFilter.Items.Clear();
-            foreach (Filter filter in activeProfile.Filters)
-                cmbFilter.Items.Add(filter);
-            cmbFilter.SelectedIndex = 0;
-            editingFilter = false;
-
-            if (activeProfile.Type == FilterProfileType.Global || activeProfile.Type == FilterProfileType.Multiplier)
-            {
-                cmbFilter.Enabled = false;
-                cbxShowActive.Enabled = false;
-                cbxForce.Enabled = false;
-            }
-            else
-            {
-                cmbFilter.Enabled = true;
-                cbxShowActive.Enabled = true;
-                cbxForce.Enabled = true;
-            }
-            lblHueNote.Visible = activeProfile.Type == FilterProfileType.Multiplier;
-            resetFilter();
-        }
-
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             editingNUDs = true;
@@ -205,6 +255,32 @@ namespace DS_Filter_Customizer
 
             if (!editingFilter)
                 cbxShowActive.Checked = false;
+        }
+
+        private void cbxBrightnessSync_CheckedChanged(object sender, EventArgs e)
+        {
+            Filter filter = (Filter)cmbFilter.SelectedItem;
+            filter.BrightnessSync = cbxBrightnessSync.Checked;
+            nudBrightnessG.Enabled = !cbxBrightnessSync.Checked;
+            nudBrightnessB.Enabled = !cbxBrightnessSync.Checked;
+            if (cbxBrightnessSync.Checked)
+            {
+                nudBrightnessG.Value = nudBrightnessR.Value;
+                nudBrightnessB.Value = nudBrightnessR.Value;
+            }
+        }
+
+        private void cbxContrastSync_CheckedChanged(object sender, EventArgs e)
+        {
+            Filter filter = (Filter)cmbFilter.SelectedItem;
+            filter.ContrastSync = cbxContrastSync.Checked;
+            nudContrastG.Enabled = !cbxContrastSync.Checked;
+            nudContrastB.Enabled = !cbxContrastSync.Checked;
+            if (cbxContrastSync.Checked)
+            {
+                nudContrastG.Value = nudContrastR.Value;
+                nudContrastB.Value = nudContrastR.Value;
+            }
         }
 
         private void filterEdited(object sender, EventArgs e)
@@ -233,32 +309,6 @@ namespace DS_Filter_Customizer
                 filter.Hue = (float)nudHue.Value;
                 resetFilter();
                 editingNUDs = false;
-            }
-        }
-
-        private void cbxBrightnessSync_CheckedChanged(object sender, EventArgs e)
-        {
-            Filter filter = (Filter)cmbFilter.SelectedItem;
-            filter.BrightnessSync = cbxBrightnessSync.Checked;
-            nudBrightnessG.Enabled = !cbxBrightnessSync.Checked;
-            nudBrightnessB.Enabled = !cbxBrightnessSync.Checked;
-            if (cbxBrightnessSync.Checked)
-            {
-                nudBrightnessG.Value = nudBrightnessR.Value;
-                nudBrightnessB.Value = nudBrightnessR.Value;
-            }
-        }
-
-        private void cbxContrastSync_CheckedChanged(object sender, EventArgs e)
-        {
-            Filter filter = (Filter)cmbFilter.SelectedItem;
-            filter.ContrastSync = cbxContrastSync.Checked;
-            nudContrastG.Enabled = !cbxContrastSync.Checked;
-            nudContrastB.Enabled = !cbxContrastSync.Checked;
-            if (cbxContrastSync.Checked)
-            {
-                nudContrastG.Value = nudContrastR.Value;
-                nudContrastB.Value = nudContrastR.Value;
             }
         }
 
@@ -292,56 +342,6 @@ namespace DS_Filter_Customizer
             resetFilter();
             if (cbxForce.Checked)
                 cbxShowActive.Checked = false;
-        }
-
-        private void disableFilters()
-        {
-            activeProfile = null;
-            cmbProfile.Enabled = false;
-            btnSave.Enabled = false;
-            btnClone.Enabled = false;
-            btnDelete.Enabled = false;
-            cmbFilter.Enabled = false;
-            gbxFilter.Enabled = false;
-            lblHueNote.Visible = false;
-        }
-
-        private void resetFilter()
-        {
-            lastWorld = -1;
-            lastFilter = -1;
-            oldFilter = null;
-            newFilter = null;
-        }
-
-        private void reloadCmbProfile()
-        {
-            cmbProfile.Items.Clear();
-            filterProfiles.Sort((a, b) =>
-            {
-                if (a.Type == b.Type)
-                    return a.Name.CompareTo(b.Name);
-                else
-                    return a.Type.CompareTo(b.Type);
-            });
-            foreach (FilterProfile filterProfile in filterProfiles)
-                cmbProfile.Items.Add(filterProfile);
-        }
-
-        private void addFilterProfile(FilterProfile profile)
-        {
-            filterProfiles.Add(profile);
-            reloadCmbProfile();
-            cmbProfile.SelectedItem = profile;
-            if (cmbProfile.Items.Count == 1)
-            {
-                cmbProfile.Enabled = true;
-                btnSave.Enabled = true;
-                btnClone.Enabled = true;
-                btnDelete.Enabled = true;
-                gbxFilter.Enabled = true;
-            }
-            profile.Save();
         }
 
         private void tmrUpdate_Tick(object sender, EventArgs e)
