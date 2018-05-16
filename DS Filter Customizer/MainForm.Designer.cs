@@ -443,7 +443,7 @@
             this.cmbProfile.Name = "cmbProfile";
             this.cmbProfile.Size = new System.Drawing.Size(538, 21);
             this.cmbProfile.TabIndex = 14;
-            this.cmbProfile.SelectedIndexChanged += new System.EventHandler(this.cmbProfile_SelectedIndexChanged);
+            this.cmbProfile.SelectedValueChanged += new System.EventHandler(this.cmbProfile_SelectedValueChanged);
             // 
             // btnNew
             // 
@@ -579,10 +579,10 @@
             this.llbNewVersion.Visible = false;
             this.llbNewVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbNewVersion_LinkClicked);
             // 
-            // llbCheckVersion
+            // lblCheckVersion
             // 
             this.lblCheckVersion.Location = new System.Drawing.Point(301, 9);
-            this.lblCheckVersion.Name = "llbCheckVersion";
+            this.lblCheckVersion.Name = "lblCheckVersion";
             this.lblCheckVersion.Size = new System.Drawing.Size(249, 23);
             this.lblCheckVersion.TabIndex = 25;
             this.lblCheckVersion.Text = "Checking for new version...";
@@ -622,7 +622,6 @@
             this.Name = "MainForm";
             this.Text = "DS Filter Customizer <version>";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.gbxFilter.ResumeLayout(false);
             this.gbxFilter.PerformLayout();

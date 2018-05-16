@@ -6,13 +6,13 @@ namespace DS_Filter_Customizer
     public class Filter
     {
         public string Name;
-        public readonly int World, ID;
+        public int World, ID;
         public bool BrightnessSync, ContrastSync;
         public float BrightnessR, BrightnessG, BrightnessB;
         public float ContrastR, ContrastG, ContrastB;
         public float Saturation, Hue;
 
-        public Filter(XmlNode nodeFilter)
+        public Filter(XmlNode nodeFilter, int version)
         {
             World = Int32.Parse(nodeFilter.Attributes["world"].Value);
             ID = Int32.Parse(nodeFilter.Attributes["id"].Value);
@@ -78,6 +78,20 @@ namespace DS_Filter_Customizer
         public override string ToString()
         {
             return Name;
+        }
+
+        public static Filter Lerp(Filter startFilter, Filter endFilter, float progress)
+        {
+            Filter result = startFilter.Clone();
+            result.BrightnessR += (endFilter.BrightnessR - startFilter.BrightnessR) * progress;
+            result.BrightnessG += (endFilter.BrightnessG - startFilter.BrightnessG) * progress;
+            result.BrightnessB += (endFilter.BrightnessB - startFilter.BrightnessB) * progress;
+            result.ContrastR += (endFilter.ContrastR - startFilter.ContrastR) * progress;
+            result.ContrastG += (endFilter.ContrastG - startFilter.ContrastG) * progress;
+            result.ContrastB += (endFilter.ContrastB - startFilter.ContrastB) * progress;
+            result.Saturation += (endFilter.Saturation - startFilter.Saturation) * progress;
+            result.Hue += (endFilter.Hue - startFilter.Hue) * progress;
+            return result;
         }
     }
 }

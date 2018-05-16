@@ -13,17 +13,26 @@ namespace DS_Filter_Customizer
 {
     public partial class MainForm : Form
     {
+        // Duration of fade between filters
         private const int FADE_TIME = 2000;
+        // URL when you click the update link label
         private const string UPDATE_LINK = "https://www.nexusmods.com/darksouls/mods/1411?tab=files";
+        // Frames of delay before reporting an unknown filter; sometimes the world and filter ID are out of sync briefly, etc
+        private const int UNKNOWN_FILTER_TIMEOUT = 5;
+
         private static Properties.Settings settings = Properties.Settings.Default;
 
         private DSProcess dsProcess;
         private bool loaded = false;
+        private bool editingNUDs = false;
+        private bool editingFilter = false;
+
+        private List<FilterProfile> filterProfiles;
+        private FilterProfile activeProfile;
         private int lastWorld, lastFilter;
-        private List<FilterFile> filterFiles;
-        private bool editing = false;
         private Filter oldFilter, newFilter;
         private long startTime, endTime;
+        private int unknownFilter = -1;
 
         public MainForm()
         {
@@ -38,22 +47,20 @@ namespace DS_Filter_Customizer
             cbxShowActive.Checked = settings.ShowActiveFilter;
             cbxForce.Checked = settings.ForceSelectedFilter;
 
-            filterFiles = new List<FilterFile>();
+            filterProfiles = new List<FilterProfile>();
             if (Directory.Exists("profiles"))
             {
                 foreach (string path in Directory.EnumerateFiles("profiles"))
                 {
                     if (Path.GetExtension(path) == ".xml")
                     {
-                        FilterProfile filterProfile = LoadFilterProfile(path);
-                        FilterFile filterFile = new FilterFile(filterProfile, path);
-                        filterFiles.Add(filterFile);
+                        filterProfiles.Add(LoadFilterProfile(path));
                     }
                 }
             }
             reloadCmbProfile();
 
-            if (filterFiles.Count == 0)
+            if (filterProfiles.Count == 0)
             {
                 disableFilters();
             }
@@ -103,13 +110,13 @@ namespace DS_Filter_Customizer
             settings.DisableFilterOverride = cbxDisable.Checked;
             settings.ShowActiveFilter = cbxShowActive.Checked;
             settings.ForceSelectedFilter = cbxForce.Checked;
-        }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (loaded)
-                dsProcess?.OverrideFilter(false);
-            dsProcess?.Close();
+            if (dsProcess != null)
+            {
+                if (loaded)
+                    dsProcess.OverrideFilter(false);
+                dsProcess.Close();
+            }
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -118,48 +125,50 @@ namespace DS_Filter_Customizer
             formNewProfile.ShowDialog();
             FilterProfile result = formNewProfile.Result;
             if (result != null)
-                createFilterFile(result);
+                addFilterProfile(result);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            FilterFile filterFile = (FilterFile)cmbProfile.SelectedItem;
-            filterFile.Profile.Save(filterFile.Path);
+            activeProfile.Save();
         }
 
         private void btnClone_Click(object sender, EventArgs e)
         {
-            FilterFile filterFile = (FilterFile)cmbProfile.SelectedItem;
-            FormCloneProfile formCloneProfile = new FormCloneProfile(filterFile.Profile);
+            FormCloneProfile formCloneProfile = new FormCloneProfile(activeProfile);
             formCloneProfile.ShowDialog();
             FilterProfile result = formCloneProfile.Result;
             if (result != null)
-                createFilterFile(result);
+                addFilterProfile(result);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int index = cmbProfile.SelectedIndex;
-            FilterFile filterFile = (FilterFile)cmbProfile.SelectedItem;
-            filterFiles.Remove(filterFile);
-            cmbProfile.Items.Remove(filterFile);
+            File.Delete(activeProfile.Path);
+            filterProfiles.Remove(activeProfile);
+            cmbProfile.Items.Remove(activeProfile);
+
             if (cmbProfile.Items.Count == 0)
                 disableFilters();
             else if (index == cmbProfile.Items.Count)
                 cmbProfile.SelectedIndex = index - 1;
             else
                 cmbProfile.SelectedIndex = index;
-            File.Delete(filterFile.Path);
         }
 
-        private void cmbProfile_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbProfile_SelectedValueChanged(object sender, EventArgs e)
         {
-            FilterFile filterFile = (FilterFile)cmbProfile.SelectedItem;
+            activeProfile = (FilterProfile)cmbProfile.SelectedItem;
+
+            editingFilter = true;
             cmbFilter.Items.Clear();
-            foreach (Filter filter in filterFile.Profile.Filters)
+            foreach (Filter filter in activeProfile.Filters)
                 cmbFilter.Items.Add(filter);
             cmbFilter.SelectedIndex = 0;
-            if (filterFile.Profile.Type == FilterProfileType.Global || filterFile.Profile.Type == FilterProfileType.Multiplier)
+            editingFilter = false;
+
+            if (activeProfile.Type == FilterProfileType.Global || activeProfile.Type == FilterProfileType.Multiplier)
             {
                 cmbFilter.Enabled = false;
                 cbxShowActive.Enabled = false;
@@ -171,25 +180,13 @@ namespace DS_Filter_Customizer
                 cbxShowActive.Enabled = true;
                 cbxForce.Enabled = true;
             }
-            lblHueNote.Visible = filterFile.Profile.Type == FilterProfileType.Multiplier;
-            lastWorld = -1;
-            lastFilter = -1;
+            lblHueNote.Visible = activeProfile.Type == FilterProfileType.Multiplier;
+            resetFilter();
         }
 
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!editing)
-                loadNUDs();
-            if (cbxForce.Checked)
-            {
-                lastWorld = -1;
-                lastFilter = -1;
-            }
-        }
-
-        private void loadNUDs()
-        {
-            editing = true;
+            editingNUDs = true;
             Filter filter = (Filter)cmbFilter.SelectedItem;
             cbxBrightnessSync.Checked = filter.BrightnessSync;
             nudBrightnessR.Value = (decimal)filter.BrightnessR;
@@ -201,14 +198,20 @@ namespace DS_Filter_Customizer
             nudContrastB.Value = (decimal)filter.ContrastB;
             nudSaturation.Value = (decimal)filter.Saturation;
             nudHue.Value = (decimal)filter.Hue;
-            editing = false;
+            editingNUDs = false;
+
+            if (cbxForce.Checked)
+                resetFilter();
+
+            if (!editingFilter)
+                cbxShowActive.Checked = false;
         }
 
         private void filterEdited(object sender, EventArgs e)
         {
-            if (!editing)
+            if (!editingNUDs)
             {
-                editing = true;
+                editingNUDs = true;
                 Filter filter = (Filter)cmbFilter.SelectedItem;
                 if (cbxBrightnessSync.Checked)
                 {
@@ -228,10 +231,8 @@ namespace DS_Filter_Customizer
                 filter.ContrastB = (float)nudContrastB.Value;
                 filter.Saturation = (float)nudSaturation.Value;
                 filter.Hue = (float)nudHue.Value;
-                newFilter = null;
-                lastWorld = -1;
-                lastFilter = -1;
-                editing = false;
+                resetFilter();
+                editingNUDs = false;
             }
         }
 
@@ -266,10 +267,7 @@ namespace DS_Filter_Customizer
             if (cbxDisable.Checked)
                 dsProcess?.OverrideFilter(false);
             else
-            {
-                lastWorld = -1;
-                lastFilter = -1;
-            }
+                resetFilter();
         }
 
         private void cbxShowActive_CheckedChanged(object sender, EventArgs e)
@@ -279,25 +277,26 @@ namespace DS_Filter_Customizer
                 cbxForce.Checked = false;
                 if (lastWorld != -1 && lastFilter != -1)
                 {
-                    FilterFile filterFile = (FilterFile)cmbProfile.SelectedItem;
-                    if (filterFile != null)
-                        cmbFilter.SelectedItem = filterFile.Profile.GetActiveFilter(lastWorld, lastFilter);
+                    if (activeProfile != null)
+                    {
+                        editingFilter = true;
+                        cmbFilter.SelectedItem = activeProfile.GetActiveFilter(lastWorld, lastFilter);
+                        editingFilter = false;
+                    }
                 }
             }
         }
 
         private void cbxForce_CheckedChanged(object sender, EventArgs e)
         {
+            resetFilter();
             if (cbxForce.Checked)
-            {
                 cbxShowActive.Checked = false;
-                lastWorld = -1;
-                lastFilter = -1;
-            }
         }
 
         private void disableFilters()
         {
+            activeProfile = null;
             cmbProfile.Enabled = false;
             btnSave.Enabled = false;
             btnClone.Enabled = false;
@@ -307,28 +306,33 @@ namespace DS_Filter_Customizer
             lblHueNote.Visible = false;
         }
 
+        private void resetFilter()
+        {
+            lastWorld = -1;
+            lastFilter = -1;
+            oldFilter = null;
+            newFilter = null;
+        }
+
         private void reloadCmbProfile()
         {
             cmbProfile.Items.Clear();
-            filterFiles.Sort((a, b) =>
+            filterProfiles.Sort((a, b) =>
             {
-                if (a.Profile.Type == b.Profile.Type)
-                    return a.Profile.Name.CompareTo(b.Profile.Name);
+                if (a.Type == b.Type)
+                    return a.Name.CompareTo(b.Name);
                 else
-                    return a.Profile.Type.CompareTo(b.Profile.Type);
+                    return a.Type.CompareTo(b.Type);
             });
-            foreach (FilterFile filterFile in filterFiles)
-                cmbProfile.Items.Add(filterFile);
+            foreach (FilterProfile filterProfile in filterProfiles)
+                cmbProfile.Items.Add(filterProfile);
         }
 
-        private void createFilterFile(FilterProfile profile)
+        private void addFilterProfile(FilterProfile profile)
         {
-            string path = profile.MakePath("profiles");
-            profile.Save(path);
-            FilterFile filterFile = new FilterFile(profile, path);
-            filterFiles.Add(filterFile);
+            filterProfiles.Add(profile);
             reloadCmbProfile();
-            cmbProfile.SelectedItem = filterFile;
+            cmbProfile.SelectedItem = profile;
             if (cmbProfile.Items.Count == 1)
             {
                 cmbProfile.Enabled = true;
@@ -337,6 +341,7 @@ namespace DS_Filter_Customizer
                 btnDelete.Enabled = true;
                 gbxFilter.Enabled = true;
             }
+            profile.Save();
         }
 
         private void tmrUpdate_Tick(object sender, EventArgs e)
@@ -361,15 +366,14 @@ namespace DS_Filter_Customizer
                         if (!loaded)
                         {
                             dsProcess.LoadPointers();
-                            lastWorld = -1;
-                            lastFilter = -1;
+                            resetFilter();
                             loaded = true;
                         }
                         else
                         {
                             lblWorldValue.Text = dsProcess.GetWorld().ToString();
                             lblFilterIDValue.Text = dsProcess.GetFilter().ToString();
-                            if (!cbxDisable.Checked)
+                            if (activeProfile != null)
                                 updateFilters();
                         }
                     }
@@ -378,7 +382,6 @@ namespace DS_Filter_Customizer
                         lblWorldValue.Text = "None";
                         lblFilterIDValue.Text = "None";
                         loaded = false;
-                        newFilter = null;
                     }
                 }
                 else
@@ -395,62 +398,75 @@ namespace DS_Filter_Customizer
             }
         }
 
-        private bool unknownFilter = false;
-
-        private Filter lerpFilter(Filter startFilter, Filter endFilter, float progress)
-        {
-            Filter result = startFilter.Clone();
-            result.BrightnessR += (endFilter.BrightnessR - startFilter.BrightnessR) * progress;
-            result.BrightnessG += (endFilter.BrightnessG - startFilter.BrightnessG) * progress;
-            result.BrightnessB += (endFilter.BrightnessB - startFilter.BrightnessB) * progress;
-            result.ContrastR += (endFilter.ContrastR - startFilter.ContrastR) * progress;
-            result.ContrastG += (endFilter.ContrastG - startFilter.ContrastG) * progress;
-            result.ContrastB += (endFilter.ContrastB - startFilter.ContrastB) * progress;
-            result.Saturation += (endFilter.Saturation - startFilter.Saturation) * progress;
-            result.Hue += (endFilter.Hue - startFilter.Hue) * progress;
-            return result;
-        }
-
         private void updateFilters()
         {
-            int world = dsProcess.GetWorld();
-            int id = dsProcess.GetFilter();
+            int world, id;
+            if (cbxForce.Enabled && cbxForce.Checked)
+            {
+                Filter filter = (Filter)cmbFilter.SelectedItem;
+                world = filter.World;
+                id = filter.ID;
+            }
+            else
+            {
+                world = dsProcess.GetWorld();
+                id = dsProcess.GetFilter();
+            }
+
             if (world != 255 && (world != lastWorld || id != lastFilter))
             {
                 lastWorld = world;
                 lastFilter = id;
 
-                FilterFile filterFile = (FilterFile)cmbProfile.SelectedItem;
-                if (filterFile != null)
+                Filter activeFilter = activeProfile.GetActiveFilter(world, id);
+                Filter appliedFilter = activeProfile.GetAppliedFilter(world, id);
+                if (activeFilter == null || appliedFilter == null)
                 {
-                    Filter activeFilter = filterFile.Profile.GetActiveFilter(world, id);
-                    if (activeFilter == null)
+                    if (unknownFilter > 0)
+                        unknownFilter--;
+                    else if (unknownFilter == 0)
                     {
-                        if (unknownFilter)
-                            txtError.Text = "Unknown filter: " + world + ", " + id;
-                        else
-                            unknownFilter = true;
+                        txtError.Text = "Unknown filter: " + world + ", " + id;
+                        unknownFilter = -1;
                     }
+                }
+                else
+                {
+                    unknownFilter = UNKNOWN_FILTER_TIMEOUT;
+
+                    if (cbxShowActive.Checked)
+                    {
+                        editingFilter = true;
+                        cmbFilter.SelectedItem = activeFilter;
+                        editingFilter = false;
+                    }
+
+                    Filter filter;
+                    if (cbxForce.Enabled && cbxForce.Checked)
+                        filter = (Filter)cmbFilter.SelectedItem;
+                    else
+                        filter = appliedFilter;
+
+                    long now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                    // Instant reset
+                    if (newFilter == null)
+                    {
+                        newFilter = filter;
+                    }
+                    // Normal fade
+                    else if (oldFilter == null)
+                    {
+                        oldFilter = newFilter;
+                        newFilter = filter;
+                    }
+                    // Interrupt fade in progress
                     else
                     {
-                        unknownFilter = false;
-
-                        if (cbxShowActive.Checked)
-                            cmbFilter.SelectedItem = activeFilter;
-
-                        Filter filter;
-                        if (cbxForce.Checked && filterFile.Profile.Type != FilterProfileType.Multiplier)
-                            filter = (Filter)cmbFilter.SelectedItem;
-                        else
-                            filter = filterFile.Profile.GetAppliedFilter(world, id);
-
-                        long now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                        if (newFilter != null)
-                            oldFilter = lerpFilter(oldFilter, newFilter, (float)(now - startTime) / (endTime - startTime));
+                        oldFilter = Filter.Lerp(oldFilter, newFilter, (float)(now - startTime) / (endTime - startTime));
                         newFilter = filter;
-                        startTime = now;
-                        endTime = now + FADE_TIME;
                     }
+                    startTime = now;
+                    endTime = now + FADE_TIME;
                 }
             }
 
@@ -461,16 +477,19 @@ namespace DS_Filter_Customizer
                 if (oldFilter == null || now > endTime)
                 {
                     filter = newFilter;
-                    oldFilter = newFilter;
-                    newFilter = null;
+                    oldFilter = null;
                 }
                 else
-                    filter = lerpFilter(oldFilter, newFilter, (float)(now - startTime) / (endTime - startTime));
-                dsProcess.SetBrightness(filter.BrightnessR, filter.BrightnessG, filter.BrightnessB);
-                dsProcess.SetContrast(filter.ContrastR, filter.ContrastG, filter.ContrastB);
-                dsProcess.SetSaturation(filter.Saturation);
-                dsProcess.SetHue(filter.Hue);
-                dsProcess.OverrideFilter(true);
+                    filter = Filter.Lerp(oldFilter, newFilter, (float)(now - startTime) / (endTime - startTime));
+
+                if (!cbxDisable.Checked)
+                {
+                    dsProcess.SetBrightness(filter.BrightnessR, filter.BrightnessG, filter.BrightnessB);
+                    dsProcess.SetContrast(filter.ContrastR, filter.ContrastG, filter.ContrastB);
+                    dsProcess.SetSaturation(filter.Saturation);
+                    dsProcess.SetHue(filter.Hue);
+                    dsProcess.OverrideFilter(true);
+                }
             }
         }
     }

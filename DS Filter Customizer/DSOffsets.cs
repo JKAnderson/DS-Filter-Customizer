@@ -4,25 +4,6 @@ namespace DS_Filter_Customizer
 {
     class DSOffsets
     {
-        public struct DSVersion
-        {
-            public readonly string Name;
-            public readonly DSOffsets Offsets;
-
-            public DSVersion(string name, DSOffsets offsets)
-            {
-                Name = name;
-                Offsets = offsets;
-            }
-        }
-
-        public static readonly Dictionary<uint, DSVersion> Versions = new Dictionary<uint, DSVersion>()
-        {
-            [0xFC293654] = new DSVersion("Steam", Release),
-            [0xCE9634B4] = new DSVersion("Debug", Debug),
-            [0xE91B11E2] = new DSVersion("Beta", null),
-        };
-
         public const int CheckVersion = 0x400080;
 
         public int CharData1Ptr = 0x137DC70;
@@ -64,6 +45,25 @@ namespace DS_Filter_Customizer
             GraphicsDataPtr = 0x137C6E0,
             Unknown1Ptr = 0x13823C4,
             Unknown5Ptr = 0x137C580,
+        };
+
+        public struct DSVersion
+        {
+            public readonly string Name;
+            public readonly DSOffsets Offsets;
+
+            public DSVersion(string name, DSOffsets offsets)
+            {
+                Name = name;
+                Offsets = offsets;
+            }
+        }
+
+        public static readonly Dictionary<uint, DSVersion> Versions = new Dictionary<uint, DSVersion>()
+        {
+            [0xFC293654] = new DSVersion("Steam", Release),
+            [0xCE9634B4] = new DSVersion("Debug", Debug),
+            [0xE91B11E2] = new DSVersion("Beta", null),
         };
     }
 }

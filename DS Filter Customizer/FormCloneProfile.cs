@@ -17,8 +17,7 @@ namespace DS_Filter_Customizer
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            Result = clone.Clone();
-            Result.Name = txtName.Text;
+            Result = clone.Clone(txtName.Text);
             Close();
         }
 

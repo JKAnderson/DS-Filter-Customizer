@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -9,6 +8,9 @@ namespace DS_Filter_Customizer
 {
     public class FilterProfile
     {
+        private const string PROFILE_DIR = "profiles";
+        private const string XML_VERSION = "0";
+
         public enum FilterProfileType
         {
             Global,
@@ -16,6 +18,14 @@ namespace DS_Filter_Customizer
             Detailed,
             FullControl,
         }
+
+        private static readonly Dictionary<FilterProfileType, string> filterProfileTypeNames = new Dictionary<FilterProfileType, string>()
+        {
+            [FilterProfileType.Global] = "Global",
+            [FilterProfileType.Multiplier] = "Multiplier",
+            [FilterProfileType.Detailed] = "Detailed",
+            [FilterProfileType.FullControl] = "Full Control",
+        };
 
         private static readonly Regex filterNameRx = new Regex(@"^(?<world>[^,]+),(?<id>\S+)\s+(?<name>.+)$");
         private static readonly Regex filterLookupRx = new Regex(@"^(?<world1>[^,]+),(?<id1>\S+)\s+(?<world2>[^,]+),(?<id2>.+)$");
@@ -59,28 +69,28 @@ namespace DS_Filter_Customizer
                 filterDetailedLookup[(world1, id1)] = (world2, id2);
             }
 
-            defaultFilterProfileGlobal = new FilterProfile(Properties.Resources.DefaultFilterProfileGlobal);
-            defaultFilterProfileMultiplier = new FilterProfile(Properties.Resources.DefaultFilterProfileMultiplier);
-            defaultFilterProfileDetailed = new FilterProfile(Properties.Resources.DefaultFilterProfileDetailed);
-            defaultFilterProfileFullControl = new FilterProfile(Properties.Resources.DefaultFilterProfileFullControl);
+            defaultFilterProfileGlobal = new FilterProfile(Properties.Resources.DefaultFilterProfileGlobal, null);
+            defaultFilterProfileMultiplier = new FilterProfile(Properties.Resources.DefaultFilterProfileMultiplier, null);
+            defaultFilterProfileDetailed = new FilterProfile(Properties.Resources.DefaultFilterProfileDetailed, null);
+            defaultFilterProfileFullControl = new FilterProfile(Properties.Resources.DefaultFilterProfileFullControl, null);
         }
 
-        public static FilterProfile CreateFilterProfile(FilterProfileType filterProfileType)
+        public static FilterProfile CreateFilterProfile(FilterProfileType filterProfileType, string name)
         {
             FilterProfile result = null;
             switch (filterProfileType)
             {
                 case FilterProfileType.Global:
-                    result = defaultFilterProfileGlobal.Clone();
+                    result = defaultFilterProfileGlobal.Clone(name);
                     break;
                 case FilterProfileType.Multiplier:
-                    result = defaultFilterProfileMultiplier.Clone();
+                    result = defaultFilterProfileMultiplier.Clone(name);
                     break;
                 case FilterProfileType.Detailed:
-                    result = defaultFilterProfileDetailed.Clone();
+                    result = defaultFilterProfileDetailed.Clone(name);
                     break;
                 case FilterProfileType.FullControl:
-                    result = defaultFilterProfileFullControl.Clone();
+                    result = defaultFilterProfileFullControl.Clone(name);
                     break;
             }
             return result;
@@ -90,7 +100,7 @@ namespace DS_Filter_Customizer
         {
             FilterProfile result = null;
             if (File.Exists(path))
-                result = new FilterProfile(File.ReadAllText(path));
+                result = new FilterProfile(File.ReadAllText(path), path);
             return result;
         }
 
@@ -99,8 +109,10 @@ namespace DS_Filter_Customizer
         public readonly FilterProfileType Type;
         public readonly List<Filter> Filters;
 
-        private FilterProfile(string xml)
+        private FilterProfile(string xml, string path)
         {
+            Path = path;
+
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xml);
 
@@ -116,7 +128,7 @@ namespace DS_Filter_Customizer
             Filters = new List<Filter>();
             foreach (XmlNode nodeFilter in xmlDoc.SelectNodes("root/filters/filter"))
             {
-                Filter filter = new Filter(nodeFilter);
+                Filter filter = new Filter(nodeFilter, version);
                 Filters.Add(filter);
 
                 switch (Type)
@@ -157,18 +169,19 @@ namespace DS_Filter_Customizer
             }
         }
 
-        private FilterProfile(FilterProfile clone)
+        private FilterProfile(FilterProfile clone, string name)
         {
-            Name = clone.Name;
+            Name = name;
+            Path = MakePath(PROFILE_DIR);
             Type = clone.Type;
             Filters = new List<Filter>();
             foreach (Filter filter in clone.Filters)
                 Filters.Add(filter.Clone());
         }
 
-        public FilterProfile Clone()
+        public FilterProfile Clone(string name)
         {
-            return new FilterProfile(this);
+            return new FilterProfile(this, name);
         }
 
         public string MakePath(string directory)
@@ -185,13 +198,13 @@ namespace DS_Filter_Customizer
             return directory + @"\" + path + ".xml";
         }
 
-        public void Save(string path)
+        public void Save()
         {
             XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
             xmlWriterSettings.Indent = true;
-            XmlWriter xmlWriter = XmlWriter.Create(path, xmlWriterSettings);
+            XmlWriter xmlWriter = XmlWriter.Create(Path, xmlWriterSettings);
             xmlWriter.WriteStartElement("root");
-            xmlWriter.WriteElementString("version", "0");
+            xmlWriter.WriteElementString("version", XML_VERSION);
             xmlWriter.WriteElementString("name", Name);
             xmlWriter.WriteElementString("type", ((int)Type).ToString());
             xmlWriter.WriteStartElement("filters");
@@ -202,14 +215,14 @@ namespace DS_Filter_Customizer
             xmlWriter.Close();
         }
 
-        public int GetActiveFilterIndex(int world, int filterID)
+        public Filter GetActiveFilter(int world, int filterID)
         {
-            int result = -1;
+            Filter result = null;
             switch (Type)
             {
                 case FilterProfileType.Global:
                 case FilterProfileType.Multiplier:
-                    result = 0;
+                    result = Filters[0];
                     break;
 
                 case FilterProfileType.Detailed:
@@ -220,7 +233,7 @@ namespace DS_Filter_Customizer
                         Filter filter = Filters[i];
                         if (filter.World == world && filter.ID == filterID)
                         {
-                            result = i;
+                            result = filter;
                             break;
                         }
                     }
@@ -232,21 +245,12 @@ namespace DS_Filter_Customizer
                         Filter filter = Filters[i];
                         if (filter.World == world && filter.ID == filterID)
                         {
-                            result = i;
+                            result = filter;
                             break;
                         }
                     }
                     break;
             }
-            return result;
-        }
-
-        public Filter GetActiveFilter(int world, int filterID)
-        {
-            Filter result = null;
-            int index = GetActiveFilterIndex(world, filterID);
-            if (index != -1)
-                result = Filters[index];
             return result;
         }
 
@@ -262,19 +266,27 @@ namespace DS_Filter_Customizer
                     break;
 
                 case FilterProfileType.Multiplier:
-                    Filter baseFilter = GetActiveFilter(world, filterID);
-                    result = defaultFilterProfileFullControl.GetAppliedFilter(world, filterID).Clone();
-                    result.BrightnessR *= baseFilter.BrightnessR;
-                    result.BrightnessG *= baseFilter.BrightnessG;
-                    result.BrightnessB *= baseFilter.BrightnessB;
-                    result.ContrastR *= baseFilter.ContrastR;
-                    result.ContrastG *= baseFilter.ContrastG;
-                    result.ContrastB *= baseFilter.ContrastB;
-                    result.Saturation *= baseFilter.Saturation;
-                    result.Hue = baseFilter.Hue;
+                    Filter baseFilter = defaultFilterProfileFullControl.GetAppliedFilter(world, filterID);
+                    if (baseFilter != null)
+                    {
+                        result = GetActiveFilter(world, filterID).Clone();
+                        result.BrightnessR *= baseFilter.BrightnessR;
+                        result.BrightnessG *= baseFilter.BrightnessG;
+                        result.BrightnessB *= baseFilter.BrightnessB;
+                        result.ContrastR *= baseFilter.ContrastR;
+                        result.ContrastG *= baseFilter.ContrastG;
+                        result.ContrastB *= baseFilter.ContrastB;
+                        result.Saturation *= baseFilter.Saturation;
+                        result.Hue = baseFilter.Hue;
+                    }
                     break;
             }
             return result;
+        }
+
+        public override string ToString()
+        {
+            return filterProfileTypeNames[Type] + ": " + Name;
         }
     }
 }

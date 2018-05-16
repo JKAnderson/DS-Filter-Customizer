@@ -17,14 +17,13 @@ namespace DS_Filter_Customizer
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (rbnGlobal.Checked)
-                Result = CreateFilterProfile(FilterProfileType.Global);
+                Result = CreateFilterProfile(FilterProfileType.Global, txtName.Text);
             else if (rbnMultiplier.Checked)
-                Result = CreateFilterProfile(FilterProfileType.Multiplier);
+                Result = CreateFilterProfile(FilterProfileType.Multiplier, txtName.Text);
             else if (rbnDetailed.Checked)
-                Result = CreateFilterProfile(FilterProfileType.Detailed);
+                Result = CreateFilterProfile(FilterProfileType.Detailed, txtName.Text);
             else if (rbnFullControl.Checked)
-                Result = CreateFilterProfile(FilterProfileType.FullControl);
-            Result.Name = txtName.Text;
+                Result = CreateFilterProfile(FilterProfileType.FullControl, txtName.Text);
             Close();
         }
 
