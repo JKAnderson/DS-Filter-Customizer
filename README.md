@@ -1,8 +1,8 @@
 
-# DS Filter Customizer 1.1
-This utility allows you to customize the built-in visual filters of Dark Souls 1. Supports multiple profiles, global or localized filter replacement, and realtime editing.  
-Requires [.NET 4.7.1](https://www.microsoft.com/net/download/thank-you/net471), which you probably already have.  
-[NexusMods Page](https://www.nexusmods.com/darksouls/mods/1411)
+# DS Filter Customizer 1.2
+[NexusMods Page](https://www.nexusmods.com/darksouls/mods/1411)  
+A utility to customize the built-in visual filters of Dark Souls 1. Supports multiple profiles, global or localized filter replacement, and realtime editing.  
+Requires [.NET 4.7.1](https://www.microsoft.com/net/download/thank-you/net471) - Windows 10 users should already have this.
 
 Seven sample profiles are included:
 * Cheerful - every area is a bit brighter and more saturated
@@ -38,6 +38,8 @@ Your profiles can be found in the "profiles" folder alongside the .exe. Each one
 [Semver](https://github.com/maxhauser/semver) by Max Hauser
 
 # Changelog
+### 1.2
+* Fixed crashing when run in locales with different decimal separators
 ### 1.1
 * Fixed sporadic Multiplier profile crash
 * Fixed changes to Multiplier profiles not applying immediately

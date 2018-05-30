@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Xml;
 
 namespace DS_Filter_Customizer
@@ -20,19 +21,19 @@ namespace DS_Filter_Customizer
             XmlNode xmlNode = nodeFilter.SelectSingleNode("brightness");
             BrightnessSync = Boolean.Parse(xmlNode.Attributes["sync"].Value);
             string[] rgb = xmlNode.InnerText.Split(',');
-            BrightnessR = Single.Parse(rgb[0]);
-            BrightnessG = Single.Parse(rgb[1]);
-            BrightnessB = Single.Parse(rgb[2]);
+            BrightnessR = Single.Parse(rgb[0], CultureInfo.InvariantCulture);
+            BrightnessG = Single.Parse(rgb[1], CultureInfo.InvariantCulture);
+            BrightnessB = Single.Parse(rgb[2], CultureInfo.InvariantCulture);
 
             xmlNode = nodeFilter.SelectSingleNode("contrast");
             ContrastSync = Boolean.Parse(xmlNode.Attributes["sync"].Value);
             rgb = xmlNode.InnerText.Split(',');
-            ContrastR = Single.Parse(rgb[0]);
-            ContrastG = Single.Parse(rgb[1]);
-            ContrastB = Single.Parse(rgb[2]);
+            ContrastR = Single.Parse(rgb[0], CultureInfo.InvariantCulture);
+            ContrastG = Single.Parse(rgb[1], CultureInfo.InvariantCulture);
+            ContrastB = Single.Parse(rgb[2], CultureInfo.InvariantCulture);
 
-            Saturation = Single.Parse(nodeFilter.SelectSingleNode("saturation").InnerText);
-            Hue = Single.Parse(nodeFilter.SelectSingleNode("hue").InnerText);
+            Saturation = Single.Parse(nodeFilter.SelectSingleNode("saturation").InnerText, CultureInfo.InvariantCulture);
+            Hue = Single.Parse(nodeFilter.SelectSingleNode("hue").InnerText, CultureInfo.InvariantCulture);
         }
 
         private Filter(Filter clone)
@@ -64,14 +65,14 @@ namespace DS_Filter_Customizer
             xmlWriter.WriteAttributeString("id", ID.ToString());
             xmlWriter.WriteStartElement("brightness");
             xmlWriter.WriteAttributeString("sync", BrightnessSync.ToString());
-            xmlWriter.WriteValue(String.Format("{0},{1},{2}", BrightnessR, BrightnessG, BrightnessB));
+            xmlWriter.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0},{1},{2}", BrightnessR, BrightnessG, BrightnessB));
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("contrast");
             xmlWriter.WriteAttributeString("sync", ContrastSync.ToString());
-            xmlWriter.WriteValue(String.Format("{0},{1},{2}", ContrastR, ContrastG, ContrastB));
+            xmlWriter.WriteValue(String.Format(CultureInfo.InvariantCulture, "{0},{1},{2}", ContrastR, ContrastG, ContrastB));
             xmlWriter.WriteEndElement();
-            xmlWriter.WriteElementString("saturation", Saturation.ToString());
-            xmlWriter.WriteElementString("hue", Hue.ToString());
+            xmlWriter.WriteElementString("saturation", Saturation.ToString(CultureInfo.InvariantCulture));
+            xmlWriter.WriteElementString("hue", Hue.ToString(CultureInfo.InvariantCulture));
             xmlWriter.WriteEndElement();
         }
 
