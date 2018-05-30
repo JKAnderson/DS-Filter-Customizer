@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DS Filter Customizer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A utility to customize the built-in visual filters of Dark Souls 1")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
 #else
